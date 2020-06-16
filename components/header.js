@@ -17,7 +17,13 @@ const Header = ({currentUser}) => {
             <div className="d-flex justify-content-end">
                 <ul className="nav d-flex align-items-center">
                     { currentUser ?
-                        (<li className="nav-item"><a className="nav-link" onClick={handleSignout}>Sign Out</a></li>) :
+                        (
+                            <>
+                                <li className="nav-item"><Link href="/tickets/new"><a className="nav-link">Sell Tickets</a></Link></li>
+                                <li className="nav-item"><Link href="/orders"><a className="nav-link">My Orders</a></Link></li>
+                                <li className="nav-item"><a className="nav-link" onClick={handleSignout}>Sign Out</a></li>
+                            </>
+                        ) :
                         (
                             <>
                                 <li className="nav-item"><Link href="/auth/signup"><a className="nav-link">Sign Up</a></Link></li>

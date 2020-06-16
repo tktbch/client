@@ -5,9 +5,11 @@ import Header from "../components/header";
 
 const AppComponent = ({ Component, pageProps, currentUser }) => {
     return (
-        <div className="container">
+        <div>
             <Header title={pageProps.title} currentUser={currentUser}/>
-            <Component {...pageProps} currentUser={currentUser} />
+            <div className="container">
+                <Component {...pageProps} currentUser={currentUser} />
+            </div>
         </div>
     )
 }
@@ -18,7 +20,7 @@ AppComponent.getInitialProps = async (appContext) => {
     const resp = await client.get(`/api/users/currentuser`);
     let pageProps = {};
     if (Component.getInitialProps) {
-        pageProps = await Component.getInitialProps(ctx)
+        pageProps = await Component.getInitialProps(ctx, client, resp.data.currentUser)
     }
 
     return {
